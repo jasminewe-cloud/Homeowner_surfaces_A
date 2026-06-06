@@ -528,10 +528,19 @@
     document.getElementById(id).classList.add('active');
   }
 
+  var comparisonLabels = {
+    opendoor: 'Tell me about the cash offer option',
+    zillow: 'Tell me about listing with a Zillow agent'
+  };
+
   function comparisonColClick(side) {
     setActiveModule('comparison-module');
     document.getElementById('col-' + side).classList.add('selected');
     var msgs = document.querySelector('.voyager-messages');
+    var userBubble = document.createElement('div');
+    userBubble.className = 'msg-user';
+    userBubble.textContent = comparisonLabels[side];
+    msgs.appendChild(userBubble);
     var reply = document.createElement('div');
     reply.className = 'msg-voyager-demand';
     reply.textContent = comparisonInsights[side];
@@ -543,6 +552,10 @@
     e.stopPropagation();
     setActiveModule('comparison-module');
     var msgs = document.querySelector('.voyager-messages');
+    var userBubble = document.createElement('div');
+    userBubble.className = 'msg-user';
+    userBubble.textContent = 'What happens when the offer expires?';
+    msgs.appendChild(userBubble);
     var reply = document.createElement('div');
     reply.className = 'msg-voyager-demand';
     reply.textContent = 'Opendoor offers expire on a fixed date — after Jun 17, this offer is gone. You can request a new one, but prices are recalculated at that point and may differ. If you\'re leaning toward the cash offer, the real deadline to decide is a few days before expiry to allow time to review the contract.';
@@ -586,11 +599,21 @@
     'showcase-boost': 'Showcase listings get priority placement at the top of search results, larger photos, and an interactive floor plan. That visibility drives 75% more views on average compared to a standard listing — which means more saves, more shares, and more competing offers. Your agent can list with Showcase from day one.'
   };
 
+  var demandMetricLabels = {
+    views: 'What do views tell me?',
+    saves: 'What do saves tell me?',
+    shares: 'What do shares tell me?'
+  };
+
   function demandMetricClick(metric) {
     setActiveModule('demand-module');
     event.currentTarget.classList.add('selected');
 
     var msgs = document.querySelector('.voyager-messages');
+    var userBubble = document.createElement('div');
+    userBubble.className = 'msg-user';
+    userBubble.textContent = demandMetricLabels[metric];
+    msgs.appendChild(userBubble);
     var reply = document.createElement('div');
     reply.className = 'msg-voyager-demand';
     reply.textContent = demandInsights[metric];
